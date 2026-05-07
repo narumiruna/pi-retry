@@ -55,10 +55,29 @@ try-local:
 try-npm:
     pi -e npm:{{package}}
 
-# Publish the current package.json version to npm
-publish:
+# Publish the current package.json version to npm. Pass OTP as `just publish 123456` if npm asks for 2FA.
+publish otp="":
     npm pack --dry-run
-    npm publish --access public
+    @published_versions="$(npm dist-tag ls {{package}} 2>/dev/null | awk -F': ' '{print $2}' || true)"; \
+    if printf '%s\n' "${published_versions}" | grep -Fxq "{{version}}"; then \
+        echo "{{package}}@{{version}} is already published; skipping npm publish."; \
+    else \
+        tmp="$(mktemp)"; \
+        if [ -n "{{otp}}" ]; then \
+            publish_cmd=(npm publish --access public --otp "{{otp}}"); \
+        else \
+            publish_cmd=(npm publish --access public); \
+        fi; \
+        if "${publish_cmd[@]}" 2>&1 | tee "${tmp}"; then \
+            :; \
+        elif grep -Fq "previously published versions: {{version}}" "${tmp}"; then \
+            echo "{{package}}@{{version}} is already published; continuing."; \
+        else \
+            rm -f "${tmp}"; \
+            exit 1; \
+        fi; \
+        rm -f "${tmp}"; \
+    fi
     @echo
     @echo "Published {{package}}@{{version}}"
     @echo "Checking dist-tags, which usually updates before npm view/install metadata..."
