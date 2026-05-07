@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: biome-check
+        name: biome check
+        entry: biome check --write --no-errors-on-unmatched
+        language: system
+        files: \.(js|jsx|ts|tsx|json|jsonc|css|html|graphql|gql)$
+        pass_filenames: true

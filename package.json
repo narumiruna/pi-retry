@@ -1,0 +1,37 @@
+{
+  "name": "pi-retry",
+  "version": "0.1.0",
+  "description": "Public pi extension that retries empty-detail provider unknown errors.",
+  "type": "module",
+  "license": "MIT",
+  "private": false,
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "pi",
+    "retry"
+  ],
+  "files": [
+    "extensions",
+    "README.md",
+    "biome.json"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions"
+    ]
+  },
+  "scripts": {
+    "check": "biome check . && npm run typecheck",
+    "format": "biome check --write .",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@mariozechner/pi-coding-agent": "*"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@mariozechner/pi-coding-agent": "0.73.0",
+    "typescript": "6.0.3"
+  }
+}
