@@ -5,13 +5,13 @@ A public [pi](https://pi.dev) extension package that treats provider responses c
 ## Install
 
 ```bash
-pi install npm:pi-retry
+pi install npm:@narumitw/pi-retry
 ```
 
 Try without installing:
 
 ```bash
-pi -e npm:pi-retry
+pi -e npm:@narumitw/pi-retry
 ```
 
 Try this working tree locally:
