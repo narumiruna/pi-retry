@@ -14,7 +14,7 @@ export default function unknownErrorRetry(pi: ExtensionAPI) {
   });
 
   pi.on("message_end", (event, ctx) => {
-    const message = event.message as {
+    const message = event.message as unknown as {
       role?: string;
       stopReason?: string;
       errorMessage?: unknown;

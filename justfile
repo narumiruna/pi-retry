@@ -74,7 +74,7 @@ bump part="patch":
 # Run this after `just publish` succeeds.
 tag:
     @version="$(node -e 'const p = JSON.parse(require("fs").readFileSync("package.json", "utf8")); process.stdout.write(p.version)')"; \
-    git add package.json package-lock.json README.md tsconfig.json extensions .pre-commit-config.yaml justfile; \
+    git add package.json package-lock.json README.md tsconfig.json biome.json extensions .pre-commit-config.yaml .gitignore justfile; \
     git commit -m "chore(release): $${version}"; \
     git tag "v$${version}"; \
     git push origin main; \
@@ -87,7 +87,7 @@ release part="patch":
     npm pack --dry-run
     npm publish --access public
     @version="$(node -e 'const p = JSON.parse(require("fs").readFileSync("package.json", "utf8")); process.stdout.write(p.version)')"; \
-    git add package.json package-lock.json README.md tsconfig.json extensions .pre-commit-config.yaml justfile; \
+    git add package.json package-lock.json README.md tsconfig.json biome.json extensions .pre-commit-config.yaml .gitignore justfile; \
     git commit -m "chore(release): $${version}"; \
     git tag "v$${version}"; \
     git push origin main; \
