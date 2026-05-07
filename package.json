@@ -1,6 +1,6 @@
 {
   "name": "pi-retry",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Public pi extension that retries empty-detail provider unknown errors.",
   "type": "module",
   "license": "MIT",
