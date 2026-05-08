@@ -23,3 +23,14 @@ pi -e .
 ## What it does
 
 When an assistant message ends with `stopReason: "error"` and the error message matches `Unknown error (no error details in response)`, the extension appends pi's retryable-provider-error hint so pi's built-in retry path can continue the turn.
+
+## Project layout
+
+```text
+extensions/
+└── unknown-error-retry/
+    ├── index.ts         # pi extension entry point and event wiring
+    └── retry-policy.ts  # retry classification and message annotation logic
+```
+
+The package manifest points pi at `./extensions/unknown-error-retry`, which follows pi's directory extension convention (`index.ts` as the entry point).

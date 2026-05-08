@@ -18,7 +18,7 @@
   ],
   "pi": {
     "extensions": [
-      "./extensions"
+      "./extensions/unknown-error-retry"
     ]
   },
   "scripts": {
